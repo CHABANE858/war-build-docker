@@ -13,18 +13,38 @@
     <description>Modern Java Webapp ready for Java 17, Maven 3.8+, and Jenkins</description>
 
     <properties>
-        <!-- Java 17 -->
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- Plugin versions -->
         <maven.war.plugin.version>3.3.3</maven.war.plugin.version>
         <jetty.plugin.version>11.0.15</jetty.plugin.version>
     </properties>
 
     <build>
         <plugins>
+
             <!-- Jetty pour le développement local -->
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.plugin.version}</version>
+                <configuration>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                    </webApp>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin WAR moderne -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven.war.plugin.version}</version>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
